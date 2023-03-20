@@ -1,8 +1,10 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
 class Task(models.Model):
-    user_choices = (('myself', 'Myself'), ('other_guy', 'Other_guy'))
+
+    user_choices = [(user.username, user.username) for user in User.objects.all()]
 
     task = models.CharField(max_length=100)
     description = models.TextField(max_length=200)
